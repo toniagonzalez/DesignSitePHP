@@ -1,3 +1,45 @@
+<?php
+if(isset($_POST["submit"])){
+
+//check for empty required fields
+if($_POST["firstname"]==""||$_POST["lastname"]==""||$_POST["email"]==""||$_POST["subject"]==""||$_POST["message"]==""){
+echo "Fill All Required Fields..";  
+}else {
+//sanitize, and validate senders email
+$email=$_POST["email"];
+$email=filter_var($email, FILTER_SANITIZE_EMAIL);
+$email=filter_var($email, FILTER_VALIDATE_EMAIL);
+if (!$email_from){
+    echo "Looks like that email isn't valid.";
+}
+else{
+$subject = "Contact Form Submission";
+$subject2 = "Re: Tonia Gonzalez Design";
+$email2 = "toniagonzalez.design@gmail.com"; //Tonia Gonzalez Design Email
+$firstname = $_POST("firstname");
+$fullname = $_POST("firstname")." ".$_POST("lastname");
+$organization = $_POST("orgname");
+$phone = $_POST("phone");
+$message = $fullname." : ".$organization. "wrote ".$_POST("message") ."\n\n"."Phone: " .$phone;
+$message2 = "Hi, ".$firstname."! Thank you for contacting Tonia Gonzalez Design! I'll review your message and follow up with you soon."."\n"."Kind regards, Tonia Gonzalez";
+$headers = 'From: '.$email ."\r\n"; // Sender's Email
+$headers2 = 'Cc:'. $email . "\r\n"; // Cc to Sender
+
+// Message lines max 70 characters per (PHP limits)
+$message = wordwrap($message, 70);
+// Send email with PHP mail Function
+mail($email2, $subject, $message, $headers);
+mail($email, $subject2, $message2, $headers2);
+echo "Hi, ".$firstname."! Thank you for contacting me. I'll be in touch with you very soon.";
+}
+}
+
+
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -83,11 +125,11 @@
                         <fieldset>
                             <legend>Let's talk!<br> Tell me a little about what you are looking for.</legend>
                             <div class="input-field">
-                                <label for="firstname">* First Name: </label>
+                                <label for="firstname">First Name: *</label>
                                 <input type="text" id="firstname" name="firstname" required><br>
                             </div>
                             <div class="input-field">
-                                <label for="lastname">* Last Name: </label>
+                                <label for="lastname">Last Name: *</label>
                                 <input type="text" id="lastname" name="lastname" required><br>
                             </div>
                             <div class="input-field">
@@ -95,7 +137,7 @@
                                 <input type="text" id="orgname" name="orgname"><br>
                             </div>
                             <div class="input-field">
-                                <label for="email">* Your Email: </label>
+                                <label for="email">Your Email: *</label>
                                 <input type="email" id="email" name="email" required><br>
                             </div>
                             <div class="input-field">
@@ -103,10 +145,11 @@
                                 <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"><br>
                             </div>
                             <div class="input-field">
-                                <label for="message">* Message: </label><br>
+                                <label for="message">Message: *</label><br>
                                 <textarea id="message" name="message" required></textarea><br>
                             </div>
                             <p class="required">* Required field</p>
+                            <p><?php include "contact.php" ?></p>
                             <div class="input-field">
                                 <input type="submit" id="contact" value="Send Message"> 
                             </div>

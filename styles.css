@@ -307,6 +307,10 @@ div.input-field textarea {
     border-bottom-right-radius: 5px;
 }
 
+div.input-field textarea {
+    min-height: 100px;
+}
+
 div.input-field input:focus,
 div.input-field textarea:focus {
     background-color: var(--form-input-color-active);
