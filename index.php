@@ -10,7 +10,7 @@ $email=$_POST["email"];
 $email=filter_var($email, FILTER_SANITIZE_EMAIL);
 $email=filter_var($email, FILTER_VALIDATE_EMAIL);
 if (!$email_from){
-    echo "Looks like that email isn't valid.";
+echo "Looks like that email isn't valid.";
 }
 else{
 $subject = "Contact Form Submission";
@@ -38,8 +38,6 @@ echo "Hi, ".$firstname."! Thank you for contacting me. I'll be in touch with you
 }
 
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -121,7 +119,7 @@ echo "Hi, ".$firstname."! Thank you for contacting me. I'll be in touch with you
                     <hr>
                 </div>
                 <div class="section-content">
-                    <form action="contact.php" method="post" name="contact_form" enctype="application/x-www-form-urlencoded">
+                    <form action="index.php" method="post" name="contact_form" enctype="application/x-www-form-urlencoded">
                         <fieldset>
                             <legend>Let's talk!<br> Tell me a little about what you are looking for.</legend>
                             <div class="input-field">
