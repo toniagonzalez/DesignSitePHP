@@ -14,14 +14,14 @@ if (!$email_from){
 }
 else{
 $subject = "Contact Form Submission";
-$subject2 = "Re: Tonia Gonzalez Design";
+$subject2 = "Confirmation of Message Reciept";
 $email2 = "toniagonzalez.design@gmail.com"; //Tonia Gonzalez Design Email
 $firstname = $_POST("firstname");
 $fullname = $_POST("firstname")." ".$_POST("lastname");
 $organization = $_POST("orgname");
 $phone = $_POST("phone");
 $message = $fullname." : ".$organization. "wrote ".$_POST("message") ."\n\n"."Phone: " .$phone;
-$message2 = "Hi, ".$firstname."! Thank you for contacting Tonia Gonzalez Design! I'll review your message and follow up with you soon."."\n"."Kind regards, Tonia Gonzalez";
+$message2 = "Hello, ".$firstname.". Thank you for contacting Tonia Gonzalez Design! I'll review your message and follow up with you shortly.\n"."Kind regards,\n Tonia Gonzalez";
 $headers = 'From: '.$email ."\r\n"; // Sender's Email
 $headers2 = 'Cc:'. $email . "\r\n"; // Cc to Sender
 
